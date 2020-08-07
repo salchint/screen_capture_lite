@@ -16,6 +16,7 @@ endif()
 if(WIN32)
     set(SCREEN_CAPTURE_PLATFORM_SRC     
 		src/windows/GetWindows.cpp
+		src/windows/GetForegroundWindow.cpp
 		src/windows/GetMonitors.cpp 
 		src/windows/DXFrameProcessor.cpp 
 		include/windows/DXFrameProcessor.h

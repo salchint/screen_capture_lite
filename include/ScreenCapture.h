@@ -140,6 +140,8 @@ namespace Screen_Capture {
     SC_LITE_EXTERN std::vector<Monitor> GetMonitors();
     // will return all windows
     SC_LITE_EXTERN std::vector<Window> GetWindows();
+    // will return the currently active window
+    SC_LITE_EXTERN Window GetForegroundWindow();
 
     typedef std::function<void(const SL::Screen_Capture::Image &img, const Window &window)> WindowCaptureCallback;
     typedef std::function<void(const SL::Screen_Capture::Image &img, const Monitor &monitor)> ScreenCaptureCallback;
