@@ -67,7 +67,7 @@ namespace Screen_Capture
                 
             w.Size.x = static_cast<int>(rect.size.width * xscale);
             w.Size.y = static_cast<int>(rect.size.height* yscale);  
-	        std::transform(std::begin(w.Name), std::end(w.Name), std::begin(w.Name), ::tolower); 
+            std::transform(std::begin(w.Name), std::end(w.Name), std::begin(w.Name), ::tolower); 
             ret.push_back(w);
         }
         CFRelease(windowList);

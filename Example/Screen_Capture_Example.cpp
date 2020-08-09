@@ -125,7 +125,7 @@ void createpartialframegrabber()
                 // capture just a 512x512 square...  USERS SHOULD MAKE SURE bounds are
                 // valid!!!!
                 SL::Screen_Capture::OffsetX(m, SL::Screen_Capture::OffsetX(m) + 512);
-                SL::Screen_Capture::OffsetY(m, SL::Screen_Capture::OffsetY(m) + 512);
+                SL::Screen_Capture::OffsetY(m, SL::Screen_Capture::OffsetY(m) + 256);
                 SL::Screen_Capture::Height(m, 512);
                 SL::Screen_Capture::Width(m, 512);
 
@@ -278,8 +278,8 @@ void createfgwindowgrabber()
             ->onNewFrame([&](const SL::Screen_Capture::Image &img, const SL::Screen_Capture::Window &window) {
                 auto r = realcounter.fetch_add(1);
                 auto s = std::to_string(r) + std::string("FGWINNEW_") + std::string(".jpg");
-                //auto size = Width(img) * Height(img) * sizeof(SL::Screen_Capture::ImageBGRA);
 
+                //auto size = Width(img) * Height(img) * sizeof(SL::Screen_Capture::ImageBGRA);
                 //auto imgbuffer(std::make_unique<unsigned char[]>(size));
                 //ExtractAndConvertToRGBA(img, imgbuffer.get(), size);
                 //tje_encode_to_file(s.c_str(), Width(img), Height(img), 4, (const unsigned char*)imgbuffer.get());
@@ -335,6 +335,7 @@ int main()
         std::cout << m << std::endl;
         assert(!SL::Screen_Capture::isMonitorInsideBounds(goodmonitors, m));
     }
+
     std::cout << "Running display capturing for 10 seconds" << std::endl;
     createframegrabber();
     std::this_thread::sleep_for(std::chrono::seconds(10));
@@ -343,12 +344,12 @@ int main()
     createwindowgrabber();
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
-    std::cout << "Running Partial display capturing for 10 seconds" << std::endl;
-    createpartialframegrabber();
-    std::this_thread::sleep_for(std::chrono::seconds(10));
-
     std::cout << "Running foreground window capturing for 10 seconds" << std::endl;
     createfgwindowgrabber();
+    std::this_thread::sleep_for(std::chrono::seconds(10));
+
+    std::cout << "Running Partial display capturing for 10 seconds" << std::endl;
+    createpartialframegrabber();
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
     std::cout << "Pausing for 10 seconds. " << std::endl;

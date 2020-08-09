@@ -34,9 +34,11 @@ if(WIN32)
 elseif(APPLE)
 
     set(SCREEN_CAPTURE_PLATFORM_SRC
-        src/ios/GetWindows.cpp 
+        src/ios/GetWindows.cpp
+        src/ios/GetForegroundWindow.cpp
+        src/ios/GetForegroundWindowId.m
         src/ios/NSMouseCapture.m
-        include/ios/NSMouseCapture.h 
+        include/ios/NSMouseCapture.h
         src/ios/NSFrameProcessor.cpp
         src/ios/NSFrameProcessor.mm
         include/ios/NSFrameProcessorm.h
