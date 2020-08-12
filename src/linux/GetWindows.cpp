@@ -31,9 +31,9 @@ namespace {
             return *this;
         }
 
-        friend void swap(UniqueTextProperty& lhs, UniqueTextProperty& rhs) {
-            using std::swap;
-            swap(lhs.p, rhs.p);
+        friend void swap(UniqueTextProperty& lhs, UniqueTextProperty& rhs)
+        {
+            std::swap(lhs.p, rhs.p);
         }
 
         ~UniqueTextProperty()
@@ -65,7 +65,7 @@ namespace {
     {
         char **list;
         auto n_strings = 0;
-        auto result = std::vector<std::string>{};
+        std::vector<std::string> result;
 
         auto status = XmbTextPropertyToTextList(
             dpy,
@@ -107,7 +107,7 @@ namespace Screen_Capture
 
         w.Position = Point{ wndattr.x, wndattr.y };
         w.Size = Point{ wndattr.width, wndattr.height };
-		
+
         auto name = candidates.empty() ? ""s : std::move(candidates.front());
         std::transform(name.begin(), name.end(), std::begin(w.Name), ::tolower);
         wnd.push_back(w);
